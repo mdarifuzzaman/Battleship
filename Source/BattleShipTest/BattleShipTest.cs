@@ -108,5 +108,33 @@ namespace BattleShipApp.Test
             Assert.AreEqual("hit", hitOrMiss);
             Assert.AreEqual(1, ship21.HitCount);
         }
+
+        [TestMethod]
+        public void ShipShouldBeSunkWhenAllSquareIsHit()
+        {
+            var board1 = new Board(4);
+            var board2 = new Board(4);
+            var player1 = new Player("player1", board1);
+            var player2 = new Player("player2", board2);
+
+            player1.Initialize();
+            player2.Initialize();
+
+            IShip ship1 = new Ship("s1", 5, 5, 3);
+            player1.SetupBoard(new List<IShip>() { ship1 });
+
+            IShip ship21 = new Ship("t1", 5, 5, 3);
+            player2.SetupBoard(new List<IShip>() { ship21 });
+
+            var hitOrMiss = player1.AttackOpposition(new Position(5, 5), player2);
+            Assert.AreEqual("hit", hitOrMiss);
+            hitOrMiss = player1.AttackOpposition(new Position(6, 5), player2);
+            Assert.AreEqual("hit", hitOrMiss);
+            hitOrMiss = player1.AttackOpposition(new Position(7, 5), player2);
+            Assert.AreEqual("hit", hitOrMiss);
+
+
+            Assert.AreEqual(true, ship21.IsShipSunk);
+        }
     }
 }

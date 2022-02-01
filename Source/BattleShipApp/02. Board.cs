@@ -12,6 +12,11 @@ namespace BattleShipApp
             Ships = new Ship[numberOfShips];            
         }
 
+        /// <summary>
+        /// Adding ships
+        /// </summary>
+        /// <param name="ship"></param>
+        /// <param name="shipNumber"></param>
         public virtual void AddShip(IShip ship, int shipNumber)
         {
             if (ship.IsOverflowing())
@@ -29,6 +34,13 @@ namespace BattleShipApp
         public IShip[] Ships { get; }
         public int TotalShip => Ships.Count(e => e != null);
         public string[,] TenByTenBoard { get; private set; }        
+        
+        /// <summary>
+        /// Attacking the opposition with a return of hit or miss
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="oppositionBoard"></param>
+        /// <returns></returns>
         public string Attack(IPosition position, IBoard oppositionBoard)
         {
             //logic to set the position
@@ -65,6 +77,13 @@ namespace BattleShipApp
             }            
         }
 
+        /// <summary>
+        /// This is a helper method to be used to display the board for the current state
+        /// If there is any hit, it will mark that position as H
+        /// M otherwise
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public bool CheckForHit(IPosition position)
         {
             var isHit = false;
@@ -85,6 +104,10 @@ namespace BattleShipApp
             return isHit;
         }
 
+        /// <summary>
+        /// Helper method to draw the ship
+        /// </summary>
+        /// <param name="ship"></param>
         private void DrawShip(IShip ship)
         {
             var points = ship.OverlappingPoints();
