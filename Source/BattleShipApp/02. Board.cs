@@ -57,6 +57,7 @@ namespace BattleShipApp
             var isWinner = true;
             foreach(var ship in oppositionBoard.Ships)
             {
+                if (ship == null) continue;
                 if (!ship.IsShipSunk)
                 {
                     isWinner = false;
