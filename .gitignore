@@ -4,3 +4,5 @@
 
 /Source/BattleShipTest/obj
 /Source/BattleShipApp/obj
+/Source/BattleShipApp/bin/Debug/netcoreapp3.1
+/Source/BattleShipTest/bin/Debug/netcoreapp3.1
